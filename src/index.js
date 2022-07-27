@@ -20,6 +20,9 @@ const queryClient = new QueryClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
+  // MEMO: 予期せぬ副作用がないか開発環境ではmount→unmount→mountをサイクルが行われる
+  // その為レンダリングが2回行われる
+  // <React.StrictMode>
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
@@ -29,6 +32,7 @@ root.render(
     </BrowserRouter>
     <ReactQueryDevtools initialIsOpen={false} />
   </QueryClientProvider>
+  // </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function
